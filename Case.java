@@ -1,27 +1,48 @@
 
 
 public class Case {
-	private boolean etat; //true decouvert, false couvert
-	private int val; // le chiffre contenu dans la case
+    private State etat;
+    private int val; // le chiffre contenu dans la case
+    private Type type;
+    
+    public enum State {
+	Discovered,
+	Hidden,
+	Flag;
+    }
+
+    public enum Type {
+	Empty,
+	Mine;
+    }
+    
+    public Case() {
+	etat = State.Hidden;
+	val  = 0;
+	type = Type.Empty;
+    }
 	
-	public Case(){
-		etat=false;
-		val=0;
-	}
+    public int getVal() {
+	return val;
+    }
 	
-	public int getVal(){
-		return val;
-	}
+    public void setVal(int x) {
+	val = x;
+    }
 	
-	public void setVal(int x){
-		val=x;
-	}
+    public State getEtat() {
+	return etat;
+    }
 	
-	public boolean getEtat(){
-		return etat;
-	}
+    public void setEtat(State etat) {
+	this.etat = etat;
+    }
+
+    public Type getType() {
+	return type;
+    }
 	
-	public void setEtat(boolean etat){
-		this.etat=etat;
-	}
+    public void setEtat(Type type) {
+	this.type = type;
+    }
 }
