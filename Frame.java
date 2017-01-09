@@ -33,6 +33,15 @@ public class Frame extends JFrame{
 		this.setContentPane(panel);
 		generate(64, 36, 20, 12);
 		
+		newGame.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent arg0) {	          
+	    		Cases = null;
+	    		Cases = new int[100][100];
+	    		setSize(416, 459);
+	    		generate(20, 20, 20, 30);	    		
+	    		repaint();
+	    	}
+	    });
 		//implementation menu
 		this.partie.add(newGame);
 	    this.partie.addSeparator();
