@@ -6,8 +6,6 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-
-
 public class CaseComponent extends JComponent {
 	private Case refCase;
 	private int width = 20;
@@ -59,7 +57,7 @@ public class CaseComponent extends JComponent {
 		g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);
 		if(refCase.getType() == Case.Type.Empty){
 			g.setColor(new Color(255, 0, 0));
-			//g.drawString();
+			g.drawString(""+refCase.getVal(), refCase.getX()+7, refCase.getY()+10);
 		}
 		else if(refCase.getType() == Case.Type.Mine){
 			g.drawImage(new ImageIcon("-1.png").getImage(), 0, 0, null);					
