@@ -19,7 +19,7 @@ public class Panel extends JPanel{
 			for ( int y = 0; y < grille[x].length; y++){
 				CaseComponent caseComponent = grille[x][y];
 				int width = caseComponent.getWidth();
-				caseComponent.setLocation(x * width, y * width);
+				caseComponent.setLocation(y * width, x * width);
 				this.add(caseComponent);
 			}
 		}
