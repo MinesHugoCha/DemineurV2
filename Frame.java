@@ -33,7 +33,7 @@ public class Frame extends JFrame{
 		}
 		
 		this.panel = new Panel(grilleAffichage);	
-		this.setTitle("title");
+		this.setTitle("demineur");
 		this.setVisible(true);
 		this.setSize(hauteur*20 + 16, longueur*20 + 59);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
