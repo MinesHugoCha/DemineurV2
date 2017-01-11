@@ -60,14 +60,22 @@ public class CaseComponent extends JComponent {
 		g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);
 		if(refCase.getType() == Case.Type.Empty){
 			g.setColor(new Color(255, 0, 0));
-			g.drawString(""+refCase.getVal(), refCase.getX()+7, refCase.getY()+10);
+			//g.drawString(""+refCase.getVal(), refCase.getX(), refCase.getY()); à étudier 
+			switch (refCase.getVal()){
+				case 0: g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);break;
+				case 1:  g.drawImage(new ImageIcon("case1.png").getImage(), 0, 0, null);break;
+				case 2:  g.drawImage(new ImageIcon("case2.png").getImage(), 0, 0, null);break;
+				case 3:  g.drawImage(new ImageIcon("case3.png").getImage(), 0, 0, null);break;
+				case 4:  g.drawImage(new ImageIcon("case4.png").getImage(), 0, 0, null);break;
+			}
+			System.out.println(refCase.getVal());
 		}
 		else if(refCase.getType() == Case.Type.Mine){
 			g.drawImage(new ImageIcon("-1.png").getImage(), 0, 0, null);					
 		}
 		if(refCase.getState() == Case.State.Hidden){
-						Graphics2D g2d =(Graphics2D) g;
-						g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .9F));
+			//Graphics2D g2d =(Graphics2D) g;
+			//g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .9F));
 			g.drawImage(new ImageIcon("caseN.png").getImage(), 0, 0, null);
 		}
 	}
