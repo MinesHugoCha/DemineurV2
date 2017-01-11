@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 public class Frame extends JFrame{
-	private CaseComponent[][] grillePaint;
+	private CaseComponent[][] grilleAffichage;
 	private Panel panel;	
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu partie = new JMenu("Partie");
@@ -23,26 +23,27 @@ public class Frame extends JFrame{
 
 	public Frame(Grille grille){
 		int hauteur = grille.getHauteur();
-		int longueur = grille.getLongueur();
-		grillePaint = new CaseComponent[hauteur][longueur];
+		int longueur = grille.getLongueur();		
+		grilleAffichage = new CaseComponent[hauteur][longueur];
 		
 		for (int i=0; i<hauteur; i++){
 			for (int j=0; j<longueur; j++){
-				grillePaint[i][j]=new CaseComponent(grille.getCase(i, j));
+				grilleAffichage[i][j]=new CaseComponent(grille.getCase(i, j), grille, grilleAffichage);				
 			}		
 		}
 		
-		this.panel = new Panel(grillePaint);	
+		this.panel = new Panel(grilleAffichage);	
 		this.setTitle("title");
 		this.setVisible(true);
-		this.setSize(1300, 800);
+		this.setSize(hauteur*20 + 16, longueur*20 + 59);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(panel);
 
 		//implementation menu
 		newGame.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {	          
+			public void actionPerformed(ActionEvent arg0) {				
+				
 				repaint();
 			}
 		});
