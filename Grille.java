@@ -198,6 +198,9 @@ public class Grille extends JPanel {
 					for (int j=y-1; j<y+2; j++){
 						if (!((i==x && j==y) || (i == -1 || j == -1 || i == hauteur || j == longueur || grille[i][j].getState()==Case.State.Flag))) {
 							grille[i][j].setState(Case.State.Discovered);
+							if (grille[i][j].getVal()==0){
+								decouvrezero_rec(i, j);
+							}
 						}
 					}
 				}
