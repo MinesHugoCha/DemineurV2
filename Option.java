@@ -12,7 +12,7 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 
 public class Option extends JDialog {
-  private ZDialogInfo Info = new ZDialogInfo();
+  private ZdialogInfo Info = new ZdialogInfo();
   private boolean sendData;
   private JRadioButton debutant, intermed, avancé, custom;
 
@@ -21,11 +21,11 @@ public class Option extends JDialog {
     this.setSize(550, 270);
     this.setLocationRelativeTo(null);
     this.setResizable(false);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     this.initComponent();
   }
 
-  public ZDialogInfo showOption(){
+  public ZdialogInfo showOption(){
     this.sendData = false;
     this.setVisible(true);      
     return this.Info;      
@@ -50,7 +50,6 @@ public class Option extends JDialog {
     panDiff.add(intermed);
     panDiff.add(avancé);
 
-
     JPanel content = new JPanel();
     content.setBackground(Color.white);
     content.add(panDiff);
@@ -60,7 +59,7 @@ public class Option extends JDialog {
     
     okBouton.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent arg0) {        
-       // Info = new ZDialogInfo(getAge());
+        Info = new ZdialogInfo(getAge());
         setVisible(false);
       }
 
