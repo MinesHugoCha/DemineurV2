@@ -17,7 +17,7 @@ public class CaseComponent extends JComponent {
 	//constructeur
 	private int ind=0;
 	boolean clic = false;
-	
+	boolean perdu = false;
 	
 	public CaseComponent (Case refCase, Grille grille, CaseComponent[][] grilleAffichage)
 	{
@@ -55,6 +55,7 @@ public class CaseComponent extends JComponent {
 						JOptionPane jop = new JOptionPane();
 						ImageIcon img = new ImageIcon("images/informatio.png");
 						jop.showMessageDialog(null, "Vous avez perdu!", "Fin", JOptionPane.INFORMATION_MESSAGE, img);
+						perdu = true;
 					}
 					if (e.getClickCount() == 2 && !e.isConsumed()) {
 					     e.consume();
@@ -67,7 +68,7 @@ public class CaseComponent extends JComponent {
 					ind=1;
 					System.out.println("a");
 				}
-				if (grille.gagner()==true){
+				if (grille.gagner()==true && perdu==false){
 					System.out.println("vous avez gagné");
 					//box message "gagné"
 					JOptionPane jop = new JOptionPane();
