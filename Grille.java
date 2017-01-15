@@ -181,6 +181,30 @@ public class Grille extends JPanel {
 		}
 	}
 	
+	public void decouvre_doubleClic(int x,int y){
+		int flags =0;
+		if (grille[x][y].getState()==Case.State.Discovered && grille[x][y].getVal()!=0){
+			for (int i=x-1; i<x+2; i++){
+				for (int j=y-1; j<y+2; j++){
+					if (!((i==x && j==y) || (i == -1 || j == -1 || i == hauteur || j == longueur ))) {
+						if(grille[i][j].getState()==Case.State.Flag){
+							flags++;
+						}
+					}
+				}
+			}
+			if (flags == grille[x][y].getVal()){
+				for (int i=x-1; i<x+2; i++){
+					for (int j=y-1; j<y+2; j++){
+						if (!((i==x && j==y) || (i == -1 || j == -1 || i == hauteur || j == longueur || grille[i][j].getState()==Case.State.Flag))) {
+							grille[i][j].setState(Case.State.Discovered);
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	//fonction verifiant si on a gagne
 	//verifie si les cases qui ne sont pas des mines sont dÃ©couvertes ou non 
 	public boolean gagner(){
