@@ -1,5 +1,3 @@
-
-
 public class Case {
 	private State etat;
 	private int val, x, y; // le chiffre contenu dans la case
