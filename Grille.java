@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 
 public class Grille extends JPanel {
 	// creation de la Grille 
-	private Case[][] mat;
-	private int nbMines; // nb de mines Ã  placer    
+	private Case[][] grille;
+	private int nbMines; // nb de mines Ã  placer    
 	private int hauteur;
 	private int longueur;
 
@@ -17,11 +17,11 @@ public class Grille extends JPanel {
 
 		hauteur=8;
 		longueur=8;
-		mat=new Case[hauteur][longueur];
+		grille=new Case[hauteur][longueur];
 		nbMines=10;
 		for (int i=0; i<hauteur; i++){
 			for (int j=0; j<longueur; j++){
-				mat[i][j]=new Case(i, j);
+				grille[i][j]=new Case(i, j);
 			}
 		}
 	}
@@ -42,10 +42,10 @@ public class Grille extends JPanel {
 			longueur=30;
 			nbMines=99;
 		}
-		mat=new Case[hauteur][longueur];
+		grille=new Case[hauteur][longueur];
 		for (int i=0; i<hauteur; i++){
 			for (int j=0; j<longueur; j++){
-				mat[i][j]=new Case(i, j);
+				grille[i][j]=new Case(i, j);
 			}
 		}
 	}
@@ -54,10 +54,10 @@ public class Grille extends JPanel {
 		this.longueur=longueur;
 		this.hauteur=hauteur;
 		nbMines=mines;
-		mat=new Case[hauteur][longueur];
+		grille=new Case[hauteur][longueur];
 		for (int i=0; i<hauteur; i++){
 			for (int j=0; j<longueur; j++){
-				mat[i][j]=new Case(i, j);
+				grille[i][j]=new Case(i, j);
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public class Grille extends JPanel {
 		
 		for (int x = 0; x < hauteur; x++) {
 			for (int y = 0; y < longueur; y++) {
-				leftCases.add(mat[x][y]);
+				leftCases.add(grille[x][y]);
 			}
 		}
 		
@@ -86,8 +86,8 @@ public class Grille extends JPanel {
 			for (int j = y-1; j <= y+1; j++){
 				if (i != x || j != y){
 					if (i != -1 && j != -1 && i != n+1 && j != m+1){
-						if (mat[i][j].getType() == Case.Type.Empty){
-							mat[i][j].setVal(mat[i][j].getVal() + 1);
+						if (grille[i][j].getType() == Case.Type.Empty){
+							grille[i][j].setVal(grille[i][j].getVal() + 1);
 						}
 					}
 				}
@@ -99,7 +99,7 @@ public class Grille extends JPanel {
 	public void incremCadre (){
 		for (int i=0; i<hauteur; i++){
 			for (int j = 0; j<longueur; j++){
-				if (mat[i][j].getType() == Case.Type.Mine){
+				if (grille[i][j].getType() == Case.Type.Mine){
 					incremtation(longueur-1, hauteur-1, i, j);
 				}
 			}
@@ -108,37 +108,37 @@ public class Grille extends JPanel {
 
 
 	//permet d'afficher la Grille
-	public void afficheMat(){
+	/*public void affichegrille(){
 		for (int i=0; i<hauteur; i++){
 			for (int j=0; j<longueur; j++){
-				if (mat[i][j].getType() == Case.Type.Mine) {
+				if (grille[i][j].getType() == Case.Type.Mine) {
 					System.out.print("X ");
 				}
 				else{
-					System.out.print(mat[i][j].getVal()+" ");
+					System.out.print(grille[i][j].getVal()+" ");
 				}
 			}
 			System.out.println();
 		}
-	}
+	}*/
 	// affichage de la Grille Joueur selon les cases decouvertes
-	public void afficheMatJoueur(){
+	/*public void affichegrilleJoueur(){
 		for (int i=0; i<hauteur; i++){
 			for (int j=0; j<longueur; j++){
-				if (mat[i][j].getState() == Case.State.Hidden) {
+				if (grille[i][j].getState() == Case.State.Hidden) {
 					System.out.print("- ");
 				}else{				
-					if (mat[i][j].getType() == Case.Type.Mine) {
+					if (grille[i][j].getType() == Case.Type.Mine) {
 						System.out.print("X ");
 					}
 					else{
-						System.out.print(mat[i][j].getVal()+" ");
+						System.out.print(grille[i][j].getVal()+" ");
 					}
 				}
 			}
 			System.out.println();
 		}
-	}
+	}*/
 
 	public int getHauteur(){
 		return hauteur;    	
@@ -149,7 +149,7 @@ public class Grille extends JPanel {
 	}
 	//getteur pour la Grille
 	public Case getCase(int x, int y){
-		return mat[x][y];
+		return grille[x][y];
 	}
 
 	// fonction recursive pour montrer les cases alentour d'un 0
@@ -159,27 +159,35 @@ public class Grille extends JPanel {
 				// on exclue le centre
 				// on evite les parties hors Grille
 				// on etudie suelement les cases non decouvertes
-				if ((i==x && j==y) ||
-						(i == -1 || j == -1 || i == hauteur || j == longueur) ||
-						(mat[i][j].getState() == Case.State.Discovered)) {
+				if ((i==x && j==y) || (i == -1 || j == -1 || i == hauteur || j == longueur || grille[i][j].getState() == Case.State.Discovered )) {
 					continue;
+				}else{
+					grille[i][j].setState(Case.State.Discovered); // on decouvre la case
 				}
-				mat[i][j].setState(Case.State.Discovered); // on decouvre la case
-				if(mat[i][j].getVal()==0){ // si la valeur est Ã  zero
+				if(grille[i][j].getVal()==0 ){ // si la valeur est Ã  zero
 					decouvrezero_rec(i,j); // on appelle la fonction de nouveau
 				}
 			}	
 		}
 	}
-
+	
+	public void decouvre_all(int x,int y){
+		if (grille[x][y].getState()==Case.State.Discovered && grille[x][y].getType()==Case.Type.Mine){
+			for (int i=0; i<hauteur; i++){
+				for (int j=0; j<longueur; j++){
+					grille[i][j].setState(Case.State.Discovered);
+				}
+			}
+		}
+	}
+	
 	//fonction verifiant si on a gagne
 	//verifie si les cases qui ne sont pas des mines sont dÃ©couvertes ou non 
 	public boolean gagner(){
 		boolean retour = true;
-
 		for (int i=0; i<hauteur;i++){
 			for (int j=0; j<longueur;j++){
-				if (mat[i][j].getState() == Case.State.Hidden && mat[i][j].getType() != Case.Type.Empty){
+				if (grille[i][j].getState() == Case.State.Hidden && grille[i][j].getType() == Case.Type.Empty){
 					retour=false;
 				}
 			}
