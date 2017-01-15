@@ -61,12 +61,13 @@ public class CaseComponent extends JComponent {
 					     e.consume();
 					     //handle double click event.
 					     
+					     
 					}
 				} 
 				if (e.getButton() == MouseEvent.BUTTON3) {
 					// Bouton droit
-					ind=1;
-					System.out.println("a");
+					//ind=1; // permet de mettre un drapeau
+					refCase.setState(Case.State.Flag);
 				}
 				if (grille.gagner()==true && perdu==false){
 					System.out.println("vous avez gagné");
@@ -121,7 +122,7 @@ public class CaseComponent extends JComponent {
 			Graphics2D g2d =(Graphics2D) g;
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .9F));
 		}*/
-		if (refCase.getState()==Case.State.Hidden && ind==1){
+		if (refCase.getState()==Case.State.Flag){
 			g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);
 			g.drawImage(new ImageIcon("flag.png").getImage(), 0, 0, null);
 		}
