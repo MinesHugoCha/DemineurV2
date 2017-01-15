@@ -15,7 +15,7 @@ public class CaseComponent extends JComponent {
 	private Case refCase;
 	private int width = 20;		//taille côté des cases (g)
 	//constructeur
-	private int ind=0;
+	//private int ind=0;
 	boolean clic = false;
 	boolean perdu = false;
 	
@@ -60,13 +60,15 @@ public class CaseComponent extends JComponent {
 					if (e.getClickCount() == 2 && !e.isConsumed()) {
 					     e.consume();
 					     //handle double click event.
-					     
+					     if (refCase.getState() == Case.State.Discovered && refCase.getVal()>=1){
+					    	 grille.decouvre_doubleClic(refCase.getX(), refCase.getY());
+					     }
 					     
 					}
 				} 
 				if (e.getButton() == MouseEvent.BUTTON3) {
 					// Bouton droit
-					//ind=1; // permet de mettre un drapeau
+					//permet de mettre un drapeau
 					refCase.setState(Case.State.Flag);
 				}
 				if (grille.gagner()==true && perdu==false){
