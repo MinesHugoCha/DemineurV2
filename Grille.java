@@ -49,7 +49,8 @@ public class Grille extends JPanel {
 			}
 		}
 	}
-
+	
+	//grille custom
 	public Grille (int longueur, int hauteur, int mines){
 		this.longueur=longueur;
 		this.hauteur=hauteur;
@@ -61,6 +62,7 @@ public class Grille extends JPanel {
 			}
 		}
 	}
+	
 	public void placeMines(){
 		ArrayList<Case> leftCases = new ArrayList<Case>(); 
 		
@@ -95,7 +97,7 @@ public class Grille extends JPanel {
 		}
 	}
 
-	//faire une fonction qui parcourt la Grille pour trouver les 9 et utiliser incremtation
+	//faire une fonction qui parcourt la Grille pour trouver les mines et utiliser incremtation
 	public void incremCadre (){
 		for (int i=0; i<hauteur; i++){
 			for (int j = 0; j<longueur; j++){
@@ -105,40 +107,6 @@ public class Grille extends JPanel {
 			}
 		}	
 	}
-
-
-	//permet d'afficher la Grille
-	/*public void affichegrille(){
-		for (int i=0; i<hauteur; i++){
-			for (int j=0; j<longueur; j++){
-				if (grille[i][j].getType() == Case.Type.Mine) {
-					System.out.print("X ");
-				}
-				else{
-					System.out.print(grille[i][j].getVal()+" ");
-				}
-			}
-			System.out.println();
-		}
-	}*/
-	// affichage de la Grille Joueur selon les cases decouvertes
-	/*public void affichegrilleJoueur(){
-		for (int i=0; i<hauteur; i++){
-			for (int j=0; j<longueur; j++){
-				if (grille[i][j].getState() == Case.State.Hidden) {
-					System.out.print("- ");
-				}else{				
-					if (grille[i][j].getType() == Case.Type.Mine) {
-						System.out.print("X ");
-					}
-					else{
-						System.out.print(grille[i][j].getVal()+" ");
-					}
-				}
-			}
-			System.out.println();
-		}
-	}*/
 
 	public int getHauteur(){
 		return hauteur;    	
@@ -201,6 +169,10 @@ public class Grille extends JPanel {
 							if (grille[i][j].getVal()==0){
 								decouvrezero_rec(i, j);
 							}
+							/*if (grille[i][j].getType()==Case.Type.Mine){
+								
+								
+							}*/
 						}
 					}
 				}
