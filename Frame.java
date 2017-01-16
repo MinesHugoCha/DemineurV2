@@ -1,9 +1,5 @@
 import java.awt.Button;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,24 +7,27 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.event.*;
 
 import java.awt.event.*;
 
-public class Frame extends JFrame{
+public class Frame extends JFrame {
 	private CaseComponent[][] grilleAffichage;
 	private Panel panel;	
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu partie = new JMenu("Partie");
 	private JMenu aide = new JMenu("?");
+	private JMenu F5 = new JMenu("F5");
 	private JMenuItem newGame = new JMenuItem("new game"),
 			stats = new JMenuItem("statistiques"),
 			options = new JMenuItem("options"),
 			quitter = new JMenuItem("quitter"),
 			aideMenu = new JMenuItem("aide"),
-			aPropos = new JMenuItem("à propos");
-
-
+			aPropos = new JMenuItem("à propos"),
+			actualiser = new JMenuItem("actualiser");
+	
 	public Frame(Grille grille){
+		
 		int hauteur = grille.getHauteur();
 		int longueur = grille.getLongueur();		
 		grilleAffichage = new CaseComponent[hauteur][longueur];
@@ -38,7 +37,10 @@ public class Frame extends JFrame{
 				grilleAffichage[i][j]=new CaseComponent(grille.getCase(i, j), grille, grilleAffichage);				
 			}		
 		}
-
+		
+		
+			
+		
 		this.panel = new Panel(grilleAffichage);	
 		this.setTitle("demineur");
 		this.setVisible(true);
@@ -49,6 +51,7 @@ public class Frame extends JFrame{
 		this.setVisible(true);
 		//this.setResizable(false); // permet d'empecher le redimensionnement de la fenetre
 
+		
 		//implementation menu
 		newGame.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {		
@@ -65,7 +68,8 @@ public class Frame extends JFrame{
 			}
 		});
 
-		
+			
+			
 		
 		this.partie.add(newGame);
 		this.partie.addSeparator();
@@ -97,12 +101,20 @@ public class Frame extends JFrame{
 		this.aide.add(aideMenu);
 		this.aide.addSeparator();
 		this.aide.add(aPropos);
+		this.F5.add(actualiser);
 
 		this.menuBar.add(partie);
 		this.menuBar.add(aide);
+		actualiser.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				repaint();
+			}
+		});
+		this.menuBar.add(F5);
+		actualiser.setMnemonic(KeyEvent.VK_O);
 		this.setJMenuBar(menuBar);
-		this.setVisible(true);
-
+		this.setVisible(true);	
 	}
+
 }
 
