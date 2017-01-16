@@ -8,6 +8,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.event.*;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
 
 import java.awt.event.*;
 
@@ -110,8 +112,12 @@ public class Frame extends JFrame {
 				repaint();
 			}
 		});
+		
+		
+		actualiser.setAccelerator(KeyStroke.getKeyStroke("SPACE"));
+		
 		this.menuBar.add(F5);
-		actualiser.setMnemonic(KeyEvent.VK_O);
+	//	actualiser.setMnemonic(KeyEvent.VK_O);
 		this.setJMenuBar(menuBar);
 		this.setVisible(true);	
 	}
