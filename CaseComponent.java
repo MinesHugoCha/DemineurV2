@@ -20,7 +20,8 @@ public class CaseComponent extends JComponent {
 	//constructeur
 	//private int ind=0;
 	boolean clic = false;
-	public boolean perdu = false;
+	boolean perdu = false;
+	boolean gagne = false;
 	
 	public CaseComponent (Case refCase, Grille grille, CaseComponent[][] grilleAffichage)
 	{
@@ -85,6 +86,7 @@ public class CaseComponent extends JComponent {
 					JOptionPane jop = new JOptionPane();
 					ImageIcon img = new ImageIcon("images/informatio.png");
 					jop.showMessageDialog(null, "Vous avez gagné!", "Fin", JOptionPane.INFORMATION_MESSAGE, img);
+					gagne=true;
 				}
 				repaint();
 				
@@ -136,7 +138,6 @@ public class CaseComponent extends JComponent {
 			g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);
 			g.drawImage(new ImageIcon("flag.png").getImage(), 0, 0, null);
 		}
-
 	}
 
 	public int getWidth() {
