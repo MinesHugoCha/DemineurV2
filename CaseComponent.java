@@ -1,7 +1,10 @@
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Ref;
@@ -17,7 +20,7 @@ public class CaseComponent extends JComponent {
 	//constructeur
 	//private int ind=0;
 	boolean clic = false;
-	boolean perdu = false;
+	public boolean perdu = false;
 	
 	public CaseComponent (Case refCase, Grille grille, CaseComponent[][] grilleAffichage)
 	{
@@ -35,7 +38,7 @@ public class CaseComponent extends JComponent {
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				clic = true;
-				if (e.getButton() == MouseEvent.BUTTON1) {
+				if (e.getButton() == MouseEvent.BUTTON1 && refCase.getState() != Case.State.Flag) {
 					// Bouton gauche
 					refCase.setState(Case.State.Discovered);
 					//if (refCase.getType() == Case.Type.Empty && grille.getCase(refCase.getX(), refCase.getY()).getVal() == 0){ 
@@ -56,6 +59,7 @@ public class CaseComponent extends JComponent {
 						ImageIcon img = new ImageIcon("images/informatio.png");
 						jop.showMessageDialog(null, "Vous avez perdu!", "Fin", JOptionPane.INFORMATION_MESSAGE, img);
 						perdu = true;
+						
 					}
 					if (e.getClickCount() == 2 && !e.isConsumed()) {
 					     e.consume();
@@ -66,10 +70,14 @@ public class CaseComponent extends JComponent {
 					     
 					}
 				} 
-				if (e.getButton() == MouseEvent.BUTTON3) {
+				if (e.getButton() == MouseEvent.BUTTON3 && refCase.getState() != Case.State.Discovered) {
 					// Bouton droit
 					//permet de mettre un drapeau
-					refCase.setState(Case.State.Flag);
+					if (refCase.getState() == Case.State.Flag){
+						refCase.setState(Case.State.Hidden);
+					}else{
+						refCase.setState(Case.State.Flag);
+					}
 				}
 				if (grille.gagner()==true && perdu==false){
 					System.out.println("vous avez gagné");
