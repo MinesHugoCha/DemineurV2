@@ -1,7 +1,7 @@
 public class Main {
 	public static void main (String[] args){
 		Grille grille = new Grille(1);
-//		Grille grilleint = new Grille(2);
+//		Grille grille = new Grille(2);
 //		Grille grillediff = new Grille(3);
 		
 		grille.placeMines();
