@@ -113,14 +113,22 @@ public class CaseComponent extends JComponent {
 			//g.drawString(""+refCase.getVal(), refCase.getX(), refCase.getY()); à étudier 
 			switch (refCase.getVal()){
 			case 0: g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);break;
-			case 1:  g.drawImage(new ImageIcon("case1.png").getImage(), 0, 0, null);break;
-			case 2:  g.drawImage(new ImageIcon("case2.png").getImage(), 0, 0, null);break;
-			case 3:  g.drawImage(new ImageIcon("case3.png").getImage(), 0, 0, null);break;
-			case 4:  g.drawImage(new ImageIcon("case4.png").getImage(), 0, 0, null);break;
-			case 5:  g.drawImage(new ImageIcon("case5.png").getImage(), 0, 0, null);break;
-			case 6:  g.drawImage(new ImageIcon("case6.png").getImage(), 0, 0, null);break;
-			case 7:  g.drawImage(new ImageIcon("case7.png").getImage(), 0, 0, null);break;
-			case 8:  g.drawImage(new ImageIcon("case8.png").getImage(), 0, 0, null);break;
+			case 1: g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null); 
+				g.drawImage(new ImageIcon("case1.png").getImage(), 0, 0, null);break;
+			case 2:  g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);
+				g.drawImage(new ImageIcon("case2.png").getImage(), 0, 0, null);break;
+			case 3: g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);  
+				g.drawImage(new ImageIcon("case3.png").getImage(), 0, 0, null);break;
+			case 4: g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);  
+				g.drawImage(new ImageIcon("case4.png").getImage(), 0, 0, null);break;
+			case 5: g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);  
+				g.drawImage(new ImageIcon("case5.png").getImage(), 0, 0, null);break;
+			case 6: g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);  
+				g.drawImage(new ImageIcon("case6.png").getImage(), 0, 0, null);break;
+			case 7: g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null); 
+				g.drawImage(new ImageIcon("case7.png").getImage(), 0, 0, null);break;
+			case 8: g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);  
+				g.drawImage(new ImageIcon("case8.png").getImage(), 0, 0, null);break;
 			}
 			System.out.println(refCase.getVal());
 		}
