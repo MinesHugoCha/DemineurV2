@@ -1,6 +1,5 @@
 import java.awt.Button;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -10,9 +9,12 @@ import javax.swing.JOptionPane;
 import javax.swing.event.*;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
-
 import java.awt.event.*;
 
+/**
+ * Frame intègre toutes les informations liées à la fenêtre d'affichage.
+ *Que ce soit les menus, l'affichage des cases ou les fenêtres de dialogue.
+ */
 public class Frame extends JFrame {
 	private CaseComponent[][] grilleAffichage;
 	private Panel panel;	
@@ -28,6 +30,10 @@ public class Frame extends JFrame {
 			aPropos = new JMenuItem("à propos"),
 			actualiser = new JMenuItem("actualiser");
 	
+	/**
+	 * @param grille on donne en parametre la grille du main pour 
+	 * ensuite creer une version graphique de celle-ci.
+	 */	
 	public Frame(Grille grille){
 		
 		int hauteur = grille.getHauteur();
@@ -55,7 +61,11 @@ public class Frame extends JFrame {
 
 		
 		//implementation menu
-		newGame.addActionListener(new ActionListener(){
+		
+		newGame.addActionListener(/**
+		 * au clic on réinitialise la grille pour un nouveau jeu		 *
+		 */
+			new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {		
 				for (int i=0; i<hauteur; i++){
 					for (int j = 0; j<longueur; j++){
@@ -77,8 +87,11 @@ public class Frame extends JFrame {
 		this.partie.addSeparator();
 		this.partie.add(stats);
 		this.partie.add(options);
-		//déroulement menu "option"
-		options.addActionListener(new ActionListener(){
+		
+		options.addActionListener(/**
+		*affichage au clic du menu d'option
+		*/
+			new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				Option opt = new Option(null,"Options",true);
 				ZdialogInfo zInfo = opt.showOption(); 
