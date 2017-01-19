@@ -42,7 +42,7 @@ public class Frame extends JFrame {
 
 		for (int i=0; i<hauteur; i++){
 			for (int j=0; j<longueur; j++){
-				grilleAffichage[i][j]=new CaseComponent(grille.getCase(i, j), grille, grilleAffichage);				
+				grilleAffichage[i][j]=new CaseComponent(grille.getCase(i, j), grille);				
 			}		
 		}
 		
