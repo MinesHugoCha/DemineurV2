@@ -121,6 +121,5 @@ public class Frame extends JFrame {
 		this.setJMenuBar(menuBar);
 		this.setVisible(true);	
 	}
-
 }
 
