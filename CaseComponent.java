@@ -27,7 +27,7 @@ public class CaseComponent extends JComponent {
 	
 	/**
 	 * @param refCase correspond à une case de la grille
-	 * @param grille	 	
+	 * @param grille	 
 	 */
 	public CaseComponent (Case refCase, Grille grille)
 	{
