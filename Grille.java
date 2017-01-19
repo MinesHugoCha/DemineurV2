@@ -1,7 +1,10 @@
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
+/**
+ * @author charlotte et hugo
+ * Grille de jeu, incluant les cases, leurs valeurs et toutes les fonctions essentielles pour jouer
+ */
 public class Grille extends JPanel {
 	// creation de la Grille 
 	private Case[][] grille;
@@ -26,8 +29,11 @@ public class Grille extends JPanel {
 		}
 	}
 
-	//constructeur Grille: choix difficultÃ©
-	//1 facile, 2 moyen, 3 difficile
+
+	/**
+	 *  intialiser le jeu avec une difficult définie
+	 * @param k 1 pour facile, 2 pour moyen ou 3 pour difficile
+	 */
 	public Grille(int k){
 		if (k==1){
 			hauteur=8;
@@ -50,7 +56,13 @@ public class Grille extends JPanel {
 		}
 	}
 	
-	//grille custom
+
+	/**
+	 * Création par le joueur d'une grille personnalisée 
+	 * @param longueur
+	 * @param hauteur
+	 * @param mines
+	 */
 	public Grille (int longueur, int hauteur, int mines){
 		this.longueur=longueur;
 		this.hauteur=hauteur;
@@ -82,12 +94,21 @@ public class Grille extends JPanel {
 		}
 	}
 
-	// fonction qui incrémente les valeurs autour d'une case [x][y] 
-	public void incremtation (int m, int n, int x, int y){ // m et n sont les limites de la Grille et x, y coord de la case au centre
+
+	/**
+	 * attribue le nombre de mines autour d'une case.
+	 * hauteur et longueur servent à délimiter les bords de la grille
+	 * x et y correspondent aux coordonnées de la case
+	 * @param hauteur  
+	 * @param longueur
+	 * @param x
+	 * @param y
+	 */
+	public void incremtation (int hauteur, int longueur, int x, int y){ 
 		for (int i = x-1; i <= x+1; i++){
 			for (int j = y-1; j <= y+1; j++){
 				if (i != x || j != y){
-					if (i != -1 && j != -1 && i != n+1 && j != m+1){
+					if (i != -1 && j != -1 && i != longueur+1 && j != hauteur+1){
 						if (grille[i][j].getType() == Case.Type.Empty){
 							grille[i][j].setVal(grille[i][j].getVal() + 1);
 						}
@@ -97,7 +118,10 @@ public class Grille extends JPanel {
 		}
 	}
 
-	//faire une fonction qui parcourt la Grille pour trouver les mines et utiliser incremtation
+	
+	/**
+	 * parcourt la Grille pour trouver les mines et utiliser incremtation
+	 */
 	public void incremCadre (){
 		for (int i=0; i<hauteur; i++){
 			for (int j = 0; j<longueur; j++){
@@ -115,12 +139,22 @@ public class Grille extends JPanel {
 	public int getLongueur(){
 		return longueur;    	
 	}
-	//getteur pour la Grille
+
+	/** 
+	 * @param x
+	 * @param y
+	 * @return retourne la case dans la grille aux coordonnées données 
+	 */
 	public Case getCase(int x, int y){
 		return grille[x][y];
 	}
 
-	// fonction recursive pour montrer les cases alentour d'un 0
+	 
+	/**
+	 * fonction recursive pour montrer les cases alentour d'un 0
+	 * @param x
+	 * @param y
+	 */
 	public void decouvrezero_rec(int x,int y){
 		for (int i=x-1; i<=x+1; i++){ // parcours des cases alentour
 			for (int j=y-1; j<=y+1; j++){ //idem
@@ -180,8 +214,10 @@ public class Grille extends JPanel {
 		}
 	}
 	
-	//fonction verifiant si on a gagne
-	//verifie si les cases qui ne sont pas des mines sont dÃ©couvertes ou non 
+
+	/**
+	 * @return vrai ou faux selon que l'on ai gagné ou non
+	 */
 	public boolean gagner(){
 		boolean retour = true;
 		for (int i=0; i<hauteur;i++){
