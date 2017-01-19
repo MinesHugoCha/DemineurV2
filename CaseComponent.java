@@ -8,22 +8,28 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Ref;
-
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 
+/**
+ * Les caseComponent sont des objets graphiques pour dessiner les cases dans la fenêtre
+ * C'est au niveau de ces cases que le mouseListener est implémenté. On interroge les cases graphiques pour interroger 
+ * les cases de la grille. 
+ */
 public class CaseComponent extends JComponent {
 	private Case refCase;
-	private int width = 20;		//taille côté des cases (g)
-	//constructeur
-	//private int ind=0;
+	private int width = 20;		//taille des segments d'une case (g)
 	boolean clic = false;
 	boolean perdu = false;
 	boolean gagne = false;
 	
-	public CaseComponent (Case refCase, Grille grille, CaseComponent[][] grilleAffichage)
+	/**
+	 * @param refCase correspond à une case de la grille
+	 * @param grille	 
+	 */
+	public CaseComponent (Case refCase, Grille grille)
 	{
 		super();
 		this.setSize(width, width);
@@ -103,8 +109,7 @@ public class CaseComponent extends JComponent {
 		});
 	}
 
-	protected void paintComponent (Graphics g)
-	{
+	protected void paintComponent (Graphics g)	{
 		super.paintComponent(g);
 
 		g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);
@@ -138,10 +143,13 @@ public class CaseComponent extends JComponent {
 		if(refCase.getState() == Case.State.Hidden){
 			g.drawImage(new ImageIcon("caseN.png").getImage(), 0, 0, null);
 		}
-		/*if(refCase.getState()==Case.State.Discovered && refCase.getType()==Case.Type.Mine){
-			Graphics2D g2d =(Graphics2D) g;
-			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .9F));
-		}*/
+		/* 
+		 * pour mettre en transparent la grille d'affichage
+		 * if(refCase.getState()==Case.State.Discovered && refCase.getType()==Case.Type.Mine){
+		 * Graphics2D g2d =(Graphics2D) g;
+		 * g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .9F));
+		 * }
+		 */
 		if (refCase.getState()==Case.State.Flag){
 			g.drawImage(new ImageIcon("case.png").getImage(), 0, 0, null);
 			g.drawImage(new ImageIcon("flag.png").getImage(), 0, 0, null);
