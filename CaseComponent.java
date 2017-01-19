@@ -27,10 +27,9 @@ public class CaseComponent extends JComponent {
 	
 	/**
 	 * @param refCase correspond à une case de la grille
-	 * @param grille	 
-	 * @param grilleAffichage	
+	 * @param grille	 	
 	 */
-	public CaseComponent (Case refCase, Grille grille, CaseComponent[][] grilleAffichage)
+	public CaseComponent (Case refCase, Grille grille)
 	{
 		super();
 		this.setSize(width, width);
